@@ -1,0 +1,18 @@
+﻿@model List<CalendarDay>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="text-center">
+    <h1 class="display-3">Calendar</h1>
+    <h3>Today is: @ViewBag.CurrentDay</h3>
+    <div class="d-flex flex-wrap">
+        @for (int i = 0; i < (int)Model.Count; i++)
+        {
+            <div class="col-sm-3 p-0 border" style="height: 100px;">
+                @Html.ActionLink($"{(i + 1)} | {Model[i].Date.DayOfWeek.ToString()} | Tasks Count: {Model[i].Todoes.Count}", "Index", "Todoes", new { date = Model[i].Date }, new { @class = "d-block w-100 h-100" })
+            </div>
+        }
+    </div>
+</div>

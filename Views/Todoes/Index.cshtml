@@ -1,0 +1,41 @@
+﻿@model List<Todo>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="text-center">
+    <h1 class="display-3">Todo List</h1>
+
+    <div class="row no-gutters">
+        <div class="col-md-4 text-left">
+            <a class="btn btn-primary" role="button" asp-controller="Todoes" asp-action="Index"><</a>
+        </div>
+        <div class="col-md-4">
+            <p>@ViewBag.date</p>
+        </div>
+        <div class="col-md-4 text-right">
+            <a class="btn btn-primary" role="button" asp-controller="Todoes" asp-action="PreviousDate">></a>
+        </div>
+    </div>
+
+    <div class="row no-gutters">
+        <div class="col-md-6 text-left">
+            <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="Index">Back..</a>
+        </div>
+        <div class="col-md-6 text-right">
+            <a class="btn btn-primary" role="button" asp-controller="Todoes" asp-action="Create">Create New..</a>
+        </div>
+    </div>
+    @for (int i = 0; i < (int)Model.Count; i++)
+    {
+        <div class="row no-gutters p-2 my-2 text-left border">
+            <div class="col-12 col-sm-6 col-md-8">@Model[i].Title | @Model[i].Description</div>
+            <div class="col-6 col-md-4 text-right">
+                @Model[i].Date
+                <a class="mx-2" asp-controller="Todoes" asp-action="Edit" asp-route-id="@Model[i].Id">Edit..</a>
+                <a class="mx-2" asp-controller="Todoes" asp-action="Delete" asp-route-id="@Model[i].Id">Delete..</a>
+            </div>
+        </div>
+    }
+</div>
